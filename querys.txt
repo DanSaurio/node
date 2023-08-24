@@ -1,0 +1,18 @@
+1.NUMERO DE VENTAS TOTALES: SELECT count(*) FROM ventas;
+2.FECHA Y HORA DE LA PRIMERA VENTA : SELECT * FROM ventas ORDER BY fecha ASC LIMIT 1;
+3.FECHA Y HORA DE LA PRIMERA VENTA : SELECT * FROM ventas ORDER BY fecha DESC LIMIT 1;
+4.CANTIDAD TOTAL: SELECT sum(cantidad) FROM ventas_detalle;
+5.CUANTAS VECES SE A VENDIDO CADA PRODUCTO: SELECT nombre, sum(cantidad) FROM ventas_detalle GROUP BY nombre;
+6.PRODUCTO MAS VENDIDO: select MAX(cantidad) FROM ventas_detalle GROUP BY nombre; / SELECT nombre, sum(cantidad) FROM ventas_detalle GROUP BY nombre ORDER BY sum(cantidad) DESC LIMIT 1;
+7.PRODUCTO MENOS VENDIDO: SELECT nombre, sum(cantidad) FROM ventas_detalle GROUP BY nombre ORDER BY sum(cantidad) ASC LIMIT 1;
+8.PRODUCTO NUNCA VENDIDO: SELECT productos.nombre,ventas_detalle.nombre FROM productos left JOIN ventas_detalle using(nombre) where ventas_detalle.nombre is null;
+9.DINERO TOTAL VENDIDO: SELECT sum(cantidad*precio) FROM ventas_detalle;
+10.ventas , FECHA, HORA , TOTAL: SELECT id, fecha, hora, SUM(cantidad*precio) AS total FROM ventas v INNER JOIN ventas_detalle vd ON id_venta = id_venta GROUP BY id_venta, fecha, hora ORDER BY fecha, hora;
+11. TOTAL VENTAS POR AÑO: SELECT YEAR(fecha),SUM(cantidad) FROM ventas_detalle INNER JOIN ventas ON id = id_venta GROUP BY YEAR (fecha); 
+12.AÑO CoN MENOR NUMERO DE VENTAS: SELECT YEAR(fecha),SUM(cantidad*precio) FROM ventas_detalle INNER JOIN ventas ON id = id_venta GROUP BY YEAR (fecha) DESC LIMIT 1;
+13.AÑO CON MAYOR NUMERO DE VENTAS: SELECT YEAR(fecha),SUM(cantidad*precio) FROM ventas_detalle INNER JOIN ventas ON id = id_venta GROUP BY YEAR (fecha) ASC LIMIT 1;
+14.VENTAS POR AÑO(DINERO):SELECT YEAR(fecha),SUM(cantidad*precio) FROM ventas_detalle INNER JOIN ventas ON id = id_venta GROUP BY YEAR (fecha);
+15.ARTICULO / PRODUCTO MAS VENDIDO POR AÑO: SELECT venta.id, SUM(venta.cantidad) AS Totalventas FROM venta GROUP BY venta.id ORDER BY SUM(venta.cantidad) DESC LIMIT 0 , 30 ;
+16.ARTICULO Y PRODUCTO MENOS VENDIDO POR AÑO:
+
+
